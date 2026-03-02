@@ -1,0 +1,59 @@
+name: "SEC-EX | Security Exception Request"
+description: "Request a time-bound temporary deviation from enforced security policies"
+title: "SEC-EX | <Application Name>"
+labels: ["security-exception"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Rule:** No permanent security exceptions are permitted. An expiry date is mandatory.
+
+  - type: input
+    id: application_name
+    attributes:
+      label: "Application Name"
+      placeholder: "e.g. Payments API"
+    validations:
+      required: true
+
+  - type: input
+    id: policy_control_violated
+    attributes:
+      label: "Policy / Control Violated"
+      placeholder: "e.g. Storage account public access disabled"
+    validations:
+      required: true
+
+  - type: textarea
+    id: business_justification
+    attributes:
+      label: "Business Justification"
+      placeholder: "Explain the business need for this exception"
+    validations:
+      required: true
+
+  - type: textarea
+    id: compensating_controls
+    attributes:
+      label: "Compensating Controls"
+      placeholder: "Describe what controls are in place to mitigate the risk"
+    validations:
+      required: true
+
+  - type: input
+    id: expiry_date
+    attributes:
+      label: "Expiry Date (Mandatory)"
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: risk_acknowledgement
+    attributes:
+      label: "Risk Acknowledgement"
+      options:
+        - label: "I acknowledge that this exception introduces risk and that compensating controls have been documented."
+          required: true
+        - label: "I confirm this exception is time-bound and will be reviewed before the expiry date."
+          required: true

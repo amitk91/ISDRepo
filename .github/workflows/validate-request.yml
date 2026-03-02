@@ -1,0 +1,49 @@
+name: Validate Service Request
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  validate:
+    name: Validate and Label Issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install --quiet PyGithub jsonschema
+
+      - name: Run validation script
+        id: validate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_LABELS: ${{ toJson(github.event.issue.labels) }}
+          REPO_FULL_NAME: ${{ github.repository }}
+        run: python .github/scripts/validate_issue.py
+
+      - name: Comment on validation failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '⚠️ **Validation Failed**\n\nThis service request failed automated validation. Please review the required fields and resubmit.\n\nSee the [workflow run](' + context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId + ') for details.'
+            })

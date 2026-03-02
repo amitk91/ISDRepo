@@ -1,0 +1,132 @@
+name: "ENV | Environment Provisioning Request"
+description: "Request SDLC environment provisioning (Sandbox / Dev / UAT only)"
+title: "ENV | <Application Name> | <Region>"
+labels: ["environment"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Guardrail:** Non-production environments only. Requires prior Cloud Frontdoor approval.
+
+  - type: input
+    id: application_name
+    attributes:
+      label: "Application Name"
+      placeholder: "e.g. Payments API"
+    validations:
+      required: true
+
+  - type: input
+    id: business_owner
+    attributes:
+      label: "Business Owner"
+      placeholder: "user@company.com"
+    validations:
+      required: true
+
+  - type: input
+    id: technical_owner
+    attributes:
+      label: "Technical Owner"
+      placeholder: "user@company.com"
+    validations:
+      required: true
+
+  - type: input
+    id: cost_center
+    attributes:
+      label: "Cost Center"
+      placeholder: "e.g. CC-1234"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment_type
+    attributes:
+      label: "Environment Type"
+      options:
+        - "Sandbox"
+        - "Dev"
+        - "UAT"
+    validations:
+      required: true
+
+  - type: input
+    id: region
+    attributes:
+      label: "Region"
+      placeholder: "e.g. eastus, southeastasia"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: data_classification
+    attributes:
+      label: "Data Classification"
+      options:
+        - "Public"
+        - "Confidential"
+        - "Restricted"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: criticality_tier
+    attributes:
+      label: "Criticality Tier"
+      options:
+        - "Tier 1"
+        - "Tier 2"
+        - "Tier 3"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: internet_exposure
+    attributes:
+      label: "Internet Exposure"
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+
+  - type: input
+    id: rto
+    attributes:
+      label: "RTO (Recovery Time Objective)"
+      placeholder: "e.g. 4 hours"
+    validations:
+      required: true
+
+  - type: input
+    id: rpo
+    attributes:
+      label: "RPO (Recovery Point Objective)"
+      placeholder: "e.g. 1 hour"
+    validations:
+      required: true
+
+  - type: input
+    id: cfd_reference_id
+    attributes:
+      label: "Cloud Frontdoor Reference ID (Optional)"
+      placeholder: "e.g. CFD-2024-0001"
+    validations:
+      required: false
+
+  - type: input
+    id: go_live_date
+    attributes:
+      label: "Expected Go-Live Date"
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Notes"
+      placeholder: "Any additional context or requirements"
+    validations:
+      required: false

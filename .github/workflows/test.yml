@@ -1,0 +1,34 @@
+name: Middleware Tests
+
+on:
+  push:
+    paths:
+      - "middleware/**"
+      - ".github/scripts/**"
+      - ".github/workflows/test.yml"
+  pull_request:
+    paths:
+      - "middleware/**"
+      - ".github/scripts/**"
+      - ".github/workflows/test.yml"
+
+jobs:
+  test:
+    name: Run Middleware Tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r middleware/requirements-dev.txt
+
+      - name: Run tests
+        run: pytest -v

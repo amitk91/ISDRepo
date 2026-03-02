@@ -1,0 +1,69 @@
+name: "PLAT | Platform Services Request"
+description: "Request standard platform service provisioning (Database / Storage / Queue / Cache / AI-ML)"
+title: "PLAT | <Application Name>"
+labels: ["platform"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Supported Services:** Database, Storage, Queue, Cache, AI/ML services.
+
+  - type: input
+    id: application_name
+    attributes:
+      label: "Application Name"
+      placeholder: "e.g. Payments API"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: service_type
+    attributes:
+      label: "Service Type"
+      options:
+        - "Database"
+        - "Storage"
+        - "Queue"
+        - "Cache"
+        - "AI/ML"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sku
+    attributes:
+      label: "SKU"
+      options:
+        - "Standard"
+        - "Premium"
+        - "Custom"
+    validations:
+      required: true
+
+  - type: input
+    id: estimated_monthly_cost
+    attributes:
+      label: "Estimated Monthly Cost (USD)"
+      placeholder: "e.g. 500"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: backup_required
+    attributes:
+      label: "Backup Required"
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: monitoring_required
+    attributes:
+      label: "Monitoring Required"
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true

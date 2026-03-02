@@ -1,0 +1,71 @@
+name: "IAM | Identity & Access Request (Non-Human)"
+description: "Request workload-level managed identity or service principal"
+title: "IAM | <Application Name>"
+labels: ["iam"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Scope:** Non-human IAM only (Managed Identity / Service Principal). User IAM is out of scope.
+
+  - type: input
+    id: application_name
+    attributes:
+      label: "Application Name"
+      placeholder: "e.g. Payments API"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: identity_type
+    attributes:
+      label: "Identity Type"
+      options:
+        - "Managed Identity"
+        - "Service Principal"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: "Scope"
+      options:
+        - "Subscription"
+        - "Resource Group"
+    validations:
+      required: true
+
+  - type: input
+    id: role_requested
+    attributes:
+      label: "Role Requested"
+      placeholder: "e.g. Storage Blob Data Reader"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: temporary_access
+    attributes:
+      label: "Temporary Access"
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+
+  - type: input
+    id: duration
+    attributes:
+      label: "Duration (if temporary)"
+      placeholder: "e.g. 30 days"
+    validations:
+      required: false
+
+  - type: textarea
+    id: business_justification
+    attributes:
+      label: "Business Justification"
+      placeholder: "Explain why this identity/access is required"
+    validations:
+      required: true

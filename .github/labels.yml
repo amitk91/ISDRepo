@@ -1,0 +1,59 @@
+# GitHub Labels for SDLC Service Management
+# Used by the middleware and GitHub Actions to categorise service requests.
+
+# ── Request Type ───────────────────────────────────────────────────────────────
+- name: environment
+  color: "0075ca"
+  description: "Environment Provisioning Request"
+
+- name: iam
+  color: "e4e669"
+  description: "Identity & Access Request (Non-Human)"
+
+- name: network
+  color: "d93f0b"
+  description: "Network & Connectivity Request"
+
+- name: platform
+  color: "0e8a16"
+  description: "Platform Services Request"
+
+- name: security-exception
+  color: "b60205"
+  description: "Security Exception Request (time-bound)"
+
+# ── Environment ────────────────────────────────────────────────────────────────
+- name: sandbox
+  color: "bfd4f2"
+  description: "Sandbox environment"
+
+- name: dev
+  color: "c2e0c6"
+  description: "Dev environment"
+
+- name: uat
+  color: "fef2c0"
+  description: "UAT environment"
+
+# ── Risk Indicators ────────────────────────────────────────────────────────────
+- name: public
+  color: "f9d0c4"
+  description: "Internet-exposed / public data classification"
+
+- name: confidential
+  color: "e99695"
+  description: "Confidential data classification"
+
+- name: restricted
+  color: "b60205"
+  description: "Restricted data classification"
+
+# ── Cost ───────────────────────────────────────────────────────────────────────
+- name: high-cost
+  color: "fbca04"
+  description: "Estimated monthly cost exceeds threshold"
+
+# ── Lifecycle ──────────────────────────────────────────────────────────────────
+- name: decommission
+  color: "cccccc"
+  description: "Resource decommission requested"

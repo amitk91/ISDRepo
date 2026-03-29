@@ -1,0 +1,72 @@
+name: "NET | Network & Connectivity Request"
+description: "Request network connectivity enablement (Private Endpoint / Firewall Rule / API Exposure)"
+title: "NET | <Application Name>"
+labels: ["network"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Note:** All public exposure requests trigger mandatory PR review and policy scan.
+
+  - type: input
+    id: application_name
+    attributes:
+      label: "Application Name"
+      placeholder: "e.g. Payments API"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: "Request Type"
+      options:
+        - "Private Endpoint"
+        - "Firewall Rule"
+        - "API Exposure"
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: "Source"
+      placeholder: "e.g. 10.0.0.0/24 or service name"
+    validations:
+      required: true
+
+  - type: input
+    id: destination
+    attributes:
+      label: "Destination"
+      placeholder: "e.g. storage account name or IP range"
+    validations:
+      required: true
+
+  - type: input
+    id: protocol_port
+    attributes:
+      label: "Protocol / Port"
+      placeholder: "e.g. TCP/443, HTTPS/8080"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: public_exposure
+    attributes:
+      label: "Public Exposure"
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: third_party_integration
+    attributes:
+      label: "Third-Party Integration"
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
